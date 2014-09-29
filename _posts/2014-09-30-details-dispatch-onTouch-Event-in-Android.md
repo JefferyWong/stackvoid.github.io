@@ -93,7 +93,8 @@ OK，我们要重点分析的就是ViewGroup中的dispatchTouchEvent方法。
                     || mFirstTouchTarget != null) {//Touch按下事件
                 final boolean disallowIntercept = (mGroupFlags & FLAG_DISALLOW_INTERCEPT) != 0;
                 if (!disallowIntercept) {
-                    intercepted = onInterceptTouchEvent(ev);//判断消息是否需要被viewGroup拦截，这个方法我们可以覆写，覆写生效的前提是 disallowIntercept 为FALSE，否则写了也没用
+                    intercepted = onInterceptTouchEvent(ev);//判断消息是否需要被viewGroup拦截，这个方法我们可以覆写，
+                    					    //覆写生效的前提是 disallowIntercept 为FALSE，否则写了也没用
                     ev.setAction(action); // restore action in case it was changed
                 } else {//不允许拦截
                     intercepted = false;
@@ -135,7 +136,7 @@ OK，我们要重点分析的就是ViewGroup中的dispatchTouchEvent方法。
                             if (newTouchTarget != null) {//找到子view
                                 // Child is already receiving touch within its bounds.
                                 // Give it the new pointer in addition to the ones it is handling.
-								//已经找到，循环结束，目标就是newTouchTarget
+				//已经找到，循环结束，目标就是newTouchTarget
                                 newTouchTarget.pointerIdBits |= idBitsToAssign;
                                 break;
                             }
