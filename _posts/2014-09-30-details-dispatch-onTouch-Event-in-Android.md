@@ -1,4 +1,9 @@
-# Android 事件分发机制详解
+---
+layout: post
+title: Android 事件分发机制详解
+categories: [Android]
+tags: [TouchEvent]
+---
 
 网上很多关于Android事件分发机制的解释，大多数描述的都不够清晰，没有吧来龙去脉搞清楚，本文将带你从Touch事件产生到Touch事件被消费这一全过程作全面的剖析。
 
