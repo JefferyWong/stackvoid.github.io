@@ -101,7 +101,7 @@ OK，我们要重点分析的就是ViewGroup中的dispatchTouchEvent方法。
             } else {
                 // There are no touch targets and this action is not an initial down
                 // so this view group continues to intercept touches.
-				//这个操作不是一开始down事件，我们把它置为TRUE，拦截之
+		//这个操作不是一开始down事件，我们把它置为TRUE，拦截之
                 intercepted = true;
             }
 
@@ -149,8 +149,10 @@ OK，我们要重点分析的就是ViewGroup中的dispatchTouchEvent方法。
             // Dispatch to touch targets.
             if (mFirstTouchTarget == null) {
                 // No touch targets so treat this as an ordinary view.
-			/*dispatchTransformedTouchEvent方法中，如果child是null，那么就调用super.dispatchTouchEvent，也就是ViewGroup的父类View的dispatchTouchEvent（如果我们在前面拦截了touch事件，那么就会这样处理），如果不是null，则调用child.dispatchTouchEvent。
-			**/
+	/*dispatchTransformedTouchEvent方法中，如果child是null，那么就调用super.dispatchTouchEvent，
+	*也就是ViewGroup的父类View的dispatchTouchEvent（如果我们在前面拦截了touch事件，那么就会这样处理），
+	*如果不是null，则调用child.dispatchTouchEvent。
+	**/
                 handled = dispatchTransformedTouchEvent(ev, canceled, null,
                         TouchTarget.ALL_POINTER_IDS);
             } else {
