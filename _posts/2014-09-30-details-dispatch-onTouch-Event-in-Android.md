@@ -319,8 +319,9 @@ public boolean performClick() {
 
 [**Touch事件一般调用过程总结**]()
 
-用户点击屏幕产生Touch(包括DOWN、UP、MOVE，本文分析的是DOWN)事件 -> InputManager -> WindowManagerService.dispatchPointer() -> IWindow.Stub -> ViewRoot.dispatchPointer() -> PhoneWindow.DecorView.dispatchTouchEvent() -> Activity.dispatchTouchEvent() -> PhoneWindow.superDispatchTouchEvent -> PhoneWindow.DecorView.superDispatchTouchEvent -> ViewGroup.dispatchTouchEvent() -> ViewGroup.dispatchTransformedTouchEvent() -> 子View.dispatchTouchEvent() -> 子View.onTouch() -> 子View.onTouchEvent() -> 事件被消费结束
+用户点击屏幕产生Touch(包括DOWN、UP、MOVE，本文分析的是DOWN)事件 -> InputManager -> WindowManagerService.dispatchPointer() -> IWindow.Stub -> ViewRoot.dispatchPointer() -> PhoneWindow.DecorView.dispatchTouchEvent() -> Activity.dispatchTouchEvent() -> PhoneWindow.superDispatchTouchEvent -> PhoneWindow.DecorView.superDispatchTouchEvent -> ViewGroup.dispatchTouchEvent() -> ViewGroup.dispatchTransformedTouchEvent() -> 子View.dispatchTouchEvent() -> 子View.onTouch() -> 子View.onTouchEvent() -> 事件被消费结束。(**这个过程是由上往下传导**)
 
+**如果事件没有被子View消费，**也就是说子View的`dispatchTouchEvent`返回false，此时事件由其父类处理(由下往上传导)，最后到达系统边界也没处理，就将此事件抛弃了。
 
 ###有用的参考
 
