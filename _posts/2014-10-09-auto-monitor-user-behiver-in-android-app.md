@@ -32,7 +32,7 @@ tags: [Monitor]
 
 重写Activity生命周期的onStart()和onStop(){或者onDestory，这个根据自己的选择确定}，来完成对界面开启和关闭的埋点记录。事件分发方法来检测ACTION_UP这个事件(也就是手指触动触摸屏抬起的那个事件)，二者通过本地广播，将onStart或onStop这些事件广播出来并被接收处理。
 
-{% highlight java lineno %}
+{% highlight java linenos %}
 public class BaseActivity extends Activity {
 	protected void onStart(){
 		super.onStart();
@@ -62,7 +62,7 @@ public class BaseActivity extends Activity {
 
 在处理广播的事件类中，我们获得VIEW_CLICK的Action就开始遍历当前Activity中所有的View，通过比对点击事件event的坐标个View的坐标，来判断是点击哪个View的event。
 
-{% highlight java lineno %}
+{% highlight java linenos %}
 public class BaseActivity extends Activity {
 	//.......
 	public class MonitorUserReceiver extends BroadcastReceiver {
