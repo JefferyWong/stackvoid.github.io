@@ -27,7 +27,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
 
 ###利用convertView
 
-利用convertView来重新回收View，效率有了本质提高。View的每次创建是比较耗时的，因此对于getview方法传入的convertView应充分利用 != null的判断 。
+利用Android的Recycler机制，利用convertView来重新回收View，效率有了本质提高。View的每次创建是比较耗时的，因此对于getview方法传入的convertView应充分利用 != null的判断 。
 
 {%highlight java linenos%}
 public View getView(int position, View convertView, ViewGroup parent) {
