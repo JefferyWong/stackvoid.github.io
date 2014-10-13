@@ -23,7 +23,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
 }
 {%endhighlight%}
 
-每次加载view，都要重新建立很多view对象，如果listview中有一万条数据，并且每条view中的数据都比较复杂，这种加载方式就歇菜了。
+每次加载view，都要重新建立很多view对象，如果某条listview中有一万条数据，这种加载方式就歇菜了。
 
 ###利用convertView
 
