@@ -7,6 +7,8 @@ tags: [ACL]
 
 本文分析 L2CAP 底层的数据包发送函数。
 
+![ACL02](/album/l2c_link_check_send_pkts.png)
+
 **l2c_link_check_send_pkts (tL2C_LCB *p_lcb, tL2C_CCB *p_ccb, BT_HDR *p_buf)** 函数的主要作用是：
 
 1. 如果 p_buf 不为 null，p_ccb 为null(在signaling状态中，信道是Fixed的) 说明这个 ACL 包是这类 L2CAP 的 command：command reject、configuration request、connection request、connection response、connection response neg、configuration response、configuration reject、disconnect response、echo request、echo response、info request、info response、disconnect request，或者说明这个 ACL 包是 S_frame(Supervisory Frame), 目前 Bluedroid 中只有这两种情况；然后把这个包放到 p_lcb->link_xmit_data_q 中，注意是当前 Link 上的 link_xmit_data_q，跟 CCB 中的 xmit_hold_q 队列是完全不同的两个队列。
