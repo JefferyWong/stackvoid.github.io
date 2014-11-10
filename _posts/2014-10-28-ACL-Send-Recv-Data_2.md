@@ -77,7 +77,9 @@ typedef enum
 } tL2C_CHNL_STATE;
 {% endhighlight %}
 
-**l2c_csm_execute** 函数通过 p_ccb 中的 chnl_state 字段，来确定接下来数据包的走向。
+**l2c_csm_execute** 函数通过 p_ccb 中的 chnl_state 字段，来确定接下来数据包的走向。如下图所示：
+
+![ACL Data](/album/l2cap_state_machine.png)
 
 1. CST_CLOSED 状态：这个 case 处理 Channel 处于 CLOSED 状态的事件。这个状态仅仅存在于 L2CAP 的 Link 初始建立过程中。
 
