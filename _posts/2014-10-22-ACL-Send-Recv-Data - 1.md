@@ -9,7 +9,7 @@ ACL 链路在 Bluetooth 中非常重要，一些重要的应用如 A2DP，  基�
 
 ### ACL包发送
 
-下面的图是各种应用层使用 L2CAP 的 API：L2CA_DataWrite 发送数据流的过程，此API继续往下走，我仅分析了正常数据流的走向(暂时没有考虑别的情况)。
+下面的图([点击大图](stackvoid/stackvoid.github.io/blob/master/album/ACL_send.png))是各种应用层使用 L2CAP 的 API：L2CA_DataWrite 发送数据流的过程，此API继续往下走，我仅分析了正常数据流的走向(暂时没有考虑别的情况)。
 
 ![ACL_01](/album/ACL_send.png)
 
