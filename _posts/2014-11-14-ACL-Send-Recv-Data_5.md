@@ -58,13 +58,13 @@ tags: [ACL]
 **l2c_rcv_acl_data** 这个函数，处理收到的 ACL 包，下面我们来分析一下 l2c_rcv_acl_data 这个函数：
 1. 在收到的 ACL 包中找出 pkt_type(分包的话要另作处理) 和 handle。
 2. 若此 ACL 包是一个完整的数据包：
-    - 首先通过 handle 找到 LCB
-    - rcv_cid 大于 L2CAP_BASE_APPL_CID(0x0040),说明是上层应用普通数据包，通过 CID 找到当前包的 CCB。
-    - hci_len 长度肯定要大于 L2CAP 头长度，否则肯定头部出错了。
-    - 如果 rcv_cid 是 L2CAP_SIGNALLING_CID，说明数据包是 创建和建立 Channel 用的(上层应用传输数据)，使用函数  process_l2cap_cmd 来处理。
-    - 如果 rcv_cid 是 L2CAP_CONNECTIONLESS_CID 说明是 广播或单播，使用函数 tcs_proc_bcst_msg 处理。
-    - 如果 rcv_cid 是 L2CAP_BLE_SIGNALLING_CID 说明是 BLE 的signalling包，交给函数 l2cble_process_sig_cmd 处理。
-    - 普通数据包，直接交给 L2CAP 的数据流状态机 l2c_csm_execute (p_ccb, **L2CEVT_L2CAP_DATA**, p_msg) 来处理，找到 L2CEVT_L2CAP_DATA 的这个 case，原来通过回调，将此数据包交给上层了(如 RFCOMM，最终是交给 RFCOMM_BufDataInd函数作进一步处理)
+   - 首先通过 handle 找到 LCB
+   - rcv_cid 大于 L2CAP_BASE_APPL_CID(0x0040),说明是上层应用普通数据包，通过 CID 找到当前包的 CCB。
+   - hci_len 长度肯定要大于 L2CAP 头长度，否则肯定头部出错了。
+   - 如果 rcv_cid 是 L2CAP_SIGNALLING_CID，说明数据包是 创建和建立 Channel 用的(上层应用传输数据)，使用函数  process_l2cap_cmd 来处理。
+   - 如果 rcv_cid 是 L2CAP_CONNECTIONLESS_CID 说明是 广播或单播，使用函数 tcs_proc_bcst_msg 处理。
+   - 如果 rcv_cid 是 L2CAP_BLE_SIGNALLING_CID 说明是 BLE 的signalling包，交给函数 l2cble_process_sig_cmd 处理。
+   - 普通数据包，直接交给 L2CAP 的数据流状态机 l2c_csm_execute (p_ccb, **L2CEVT_L2CAP_DATA**, p_msg) 来处理，找到 L2CEVT_L2CAP_DATA 的这个 case，原来通过回调，将此数据包交给上层了(如 RFCOMM，最终是交给 RFCOMM_BufDataInd函数作进一步处理)
 
 上述数据包，我们仅仅考虑了最普通的数据流，其他的控制数据包有时间在分析。
 
