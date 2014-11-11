@@ -269,6 +269,7 @@ btu_task的一个 BT_EVT_TO_BTU_HCI_EVT case --> btu_hcif_process_event 的一�
 通过这个调用链，我们知道处理事件或数据流都在 btu_task 中进行。
 
 **l2c_link_process_num_completed_pkts**这个函数都做了些什么呢？我们来深入代码了解一下整个过程。
+
 1. 通过 num_sent 来更新数据 controller_xmit_window，sent_not_acked。
 2. 既然又多了 credits(Snoop中的)，那么自然调用 l2c_link_check_send_pkts 去找更多的包发送下去。
 3. l2c_link_process_num_completed_pkts 和 l2c_link_check_send_pkts 形成了一个递归式的调用，l2c_link_check_send_pkts 会产生 process num complete 这个event，l2c_link_process_num_completed_pkts找到 Link后在让 l2c_link_check_send_pkts 发包。
