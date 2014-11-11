@@ -56,7 +56,9 @@ tags: [ACL]
 {% endhighlight %}
 
 **l2c_rcv_acl_data** 这个函数，处理收到的 ACL 包，下面我们来分析一下 l2c_rcv_acl_data 这个函数：
+
 1. 在收到的 ACL 包中找出 pkt_type(分包的话要另作处理) 和 handle。
+
 2. 若此 ACL 包是一个完整的数据包：
    - 首先通过 handle 找到 LCB
    - rcv_cid 大于 L2CAP_BASE_APPL_CID(0x0040),说明是上层应用普通数据包，通过 CID 找到当前包的 CCB。
