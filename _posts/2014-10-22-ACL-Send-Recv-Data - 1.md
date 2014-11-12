@@ -7,13 +7,15 @@ tags: [ACL]
 
 ACL 链路在 Bluetooth 中非常重要，一些重要的应用如 A2DP，  基于 RFCOMM 的应用，BNEP等都要建立 ACL 链路，发送/接收ACL 包。Mike 跟大家一起来分析 ACL 包发送/接收流程，以及涉及到的重要 command/event。
 
-### ACL包发送
+ACL包发送
+----
 
 下面的图([点击大图](stackvoid/stackvoid.github.io/blob/master/album/ACL_send.png))是各种应用层使用 L2CAP 的 API：L2CA_DataWrite 发送数据流的过程，此API继续往下走，我仅分析了正常数据流的走向(暂时没有考虑别的情况)。
 
 ![ACL_01](/album/ACL_send.png)
 
-### 应用层数据到 L2CAP 的入口
+应用层数据到 L2CAP 的入口
+----
 
 我们假设一个听音乐的场景，Mike跟大家一起分析音乐数据流 AVDTP 以下层的传送。
 
