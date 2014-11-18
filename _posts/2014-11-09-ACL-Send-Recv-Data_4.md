@@ -7,7 +7,7 @@ tags: [ACL]
 
 本文分析 L2CAP 底层的数据包发送函数。
 
-![ACL02](/album/l2c_link_check_send_pkts.png)
+![ACL02](/album/l2c_link_check_send_pkts2.png)
 
 **l2c_link_check_send_pkts (tL2C_LCB *p_lcb, tL2C_CCB *p_ccb, BT_HDR *p_buf)** 函数的主要作用是：
 
@@ -22,10 +22,12 @@ tags: [ACL]
 
 OK，上面流程 1 -> 3 是一个单独的流程, 处理一些 L2CAP command 或 Response 的发送情况。
 
-下面偶在来分析另外一个 case，这**三个参数全部为空**的情况，这种情况只在 L2CAP 发送 disconnect request 命令时出现(关闭当前 Link 要确保对应上层应用的 CCB 中的数据要发完)，主要作用是：
+下面偶在来分析另外一个 case，这**三个参数全部为非空**的情况，这种情况只在 L2CAP 发送 disconnect request 命令时出现(关闭当前 Link 要确保对应上层应用的 CCB 中的数据要发完)，主要作用是：
 
 1. 在函数 l2cu_send_peer_disc_req 中我们看到 CCB 中的数据包直接从 CCB 的 xmit_hold_q 中出队列，设置 ACL 包头就直接交给 l2c_link_check_send_pkts(p_ccb->p_lcb, p_ccb, p_buf2)发送了。
 2. 看到 l2c_link_check_send_pkts 的三个参数均不为 null，说明我们把当前的 CCB 中 xmit_hold_q 的数据包 当成 Link 上的 link_xmit_data_q 发送出去了(相当于优先发送了)，single_write 是一个标志位，代表当前数据包由 CCB -> LCB 代替发送。由于判断了 single_write 这个标志位，程序不会再去 CCB 中找数据包了。
+
+还有一种 case 是**全部为空**的情况，这是触发了 RR 机制所致，正常情况还有发送窗口的情况下，会遍历每个 Link ，然后先发当前 Link上的 Queue里的数据发送出去，然后再发送 CCB 中 Queue 的数据。
 
 OK，这个函数还剩最后一个 case，就是**正常情况**下，我们听音乐的数据流发送的情况，这是最常见的一种情况，调用形式为 l2c_link_check_send_pkts (p_lcb, NULL, NULL)。
 
