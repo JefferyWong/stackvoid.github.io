@@ -200,8 +200,8 @@ void l2c_link_check_send_pkts (tL2C_LCB *p_lcb, tL2C_CCB *p_ccb, BT_HDR *p_buf)
 
 最终 l2c_link_check_send_pkts 把数据包交给了 l2c_link_send_to_lower 来做处理，我们的音乐数据包最终也被从某个 CCB 中的队列出队列给了 l2c_link_send_to_lower。l2c_link_send_to_lower 主要做了这些事情：
 
-1. 如果当前数据包 p_buf 的长度小于 ACL 包的最大值，sent_not_acked 加1，整个 L2CAP 的 controller_xmit_window 减1。然后通过 L2C_LINK_SEND_BLE_ACL_DATA 将此数据包发送出去。
-2. 如果当前数据包 p_buf 的长度大于 ACL 包的最大值，先看看能分成几个分包(为了求的几个窗口能容下)，然后窗口值减掉这些分包个数，然后将整个数据包交给 L2C_LINK_SEND_BLE_ACL_DATA (大于ACL包长度)，具体分包发送由 H5(串口) 部分来负责。
+1. 如果当前数据包 p_buf 的长度小于 ACL 包的最大值，sent_not_acked 加1，整个 L2CAP 的 controller_xmit_window 减1。然后通过 L2C_LINK_SEND_ACL_DATA 将此数据包发送出去。
+2. 如果当前数据包 p_buf 的长度大于 ACL 包的最大值，先看看能分成几个分包(为了求的几个窗口能容下)，然后窗口值减掉这些分包个数，然后将整个数据包交给 L2C_LINK_SEND_ACL_DATA (大于ACL包长度)，具体分包发送由 H5(串口) 部分来负责。
 
 {% highlight c linenos %}
 
