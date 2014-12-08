@@ -29,28 +29,28 @@ tags: [Optimization]
 AbsListView.OnScrollListener onScrollListener = new AbsListView.OnScrollListener() {// ListView
 // 触摸事件
 
-public void onScroll(AbsListView view, int firstVisibleItem,
-int visibleItemCount, int totalItemCount) {
+public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 }
 
 public void onScrollStateChanged(AbsListView view, int scrollState) {
 switch (scrollState) {
-case AbsListView.OnScrollListener.SCROLL_STATE_FLING:// 滑动状态
-threadFlag = false;
-break;
-case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:// 停止
-threadFlag = true;
-startThread();//开启新线程，加载数据
-break;
-case AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:// 触摸listView
-threadFlag = false;
-break;
-default:
-// Toast.makeText(contextt, "default",
-// Toast.LENGTH_SHORT).show();
-break;
-}
+  case AbsListView.OnScrollListener.SCROLL_STATE_FLING:// 滑动状态
+  threadFlag = false;
+  break;
+  case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:// 停止
+  threadFlag = true;
+  startThread();//开启新线程，加载数据
+  break;
+  case AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:// 触摸listView
+  threadFlag = false;
+  break;
+  default:
+  // Toast.makeText(contextt, "default",
+  // Toast.LENGTH_SHORT).show();
+  break;
+  }
 }
 };
 {%endhighlight%}
+
 相信做到以上三点，就能运用自如的使用 ListView了，O(∩_∩)O哈哈~
