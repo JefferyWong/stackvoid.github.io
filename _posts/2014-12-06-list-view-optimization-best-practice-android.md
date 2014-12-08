@@ -52,5 +52,5 @@ break;
 }
 }
 };
-
+{%endhighlight%}
 相信做到以上三点，就能运用自如的使用 ListView了，O(∩_∩)O哈哈~
