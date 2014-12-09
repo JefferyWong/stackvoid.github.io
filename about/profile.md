@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 简历（明鹏飞）
+title: 简历
 ---
 
 # 联系方式
