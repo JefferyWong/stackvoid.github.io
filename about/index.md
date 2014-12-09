@@ -39,7 +39,10 @@ comments: no
 
 GitHub : [http://github.com/{{ site.github }}](http://github.com/{{ site.github }})
 
-[See my Resume](http://stackvoid.com/about/profile)
+[See my resume](http://stackvoid.com/about/profile)
+
+
+
 ----
 
 {% if site.weibo %}
