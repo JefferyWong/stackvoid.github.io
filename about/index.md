@@ -39,6 +39,7 @@ comments: no
 
 GitHub : [http://github.com/{{ site.github }}](http://github.com/{{ site.github }})
 
+[简历：http://stackvoid.com/about/profile](http://stackvoid.com/about/profile)
 ----
 
 {% if site.weibo %}
