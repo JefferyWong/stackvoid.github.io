@@ -1,14 +1,14 @@
 markdown: rdiscount
 permalink: /:title/
-url: http://stackvoid.com
-name: StackVoid
-author: stackvoid
-email: pfming1989@gmail.com
+url: http://jeffreyWang.com
+name: JeffreyWang
+author: JeffreyWang
+email: w.zhengjie10@gmail.com
 duoshuo: stackvoid
 cnzz: 1000413857
-weibo: 539110127
-github: stackvoid
+weibo: 208121119
+github: JefferyWong
 pygments: true
 safe: true
 paginate: 20
-about: "Stackvoid's Attitude."
+about: "Jeffrey's Life."
