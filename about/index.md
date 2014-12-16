@@ -38,6 +38,8 @@ comments: no
 
 GitHub : [http://github.com/{{ site.github }}](http://github.com/{{ site.github }})
 
+Twitter : [@stackvoid](https://twitter.com/stackvoid) 
+
 [See My Resume](http://stackvoid.com/about/profile)
 
 
